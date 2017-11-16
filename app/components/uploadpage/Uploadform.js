@@ -129,6 +129,7 @@ export default class Uploadform extends Component {
 						</Select>
 						<Button onClick={(e) => this.onSubmit(e)} color="primary">Upload</Button>
 					</form>
+					<p> {JSON.stringify(this.props.state)} </p>
 				</div>
 			</div>
 		);
