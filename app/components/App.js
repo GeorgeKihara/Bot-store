@@ -2,7 +2,8 @@ import React from 'react';
 import Search from "./homepage/Search";
 import Sidebar from "./homepage/Sidebar";
 import Commonbots from "./homepage/Commonbots";
-import Uploadform from "./uploadpage/Uploadform"
+import Uploadform from "./uploadpage/Uploadform";
+import Footer from './Footer';
 
 
 
@@ -29,9 +30,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <Search />
-        <div>  
-                
+        <div>                
         <Commonbots />
+        
+        <Footer/>
+        
         </div>
    
       </div>

@@ -7,7 +7,7 @@ const mongojs = require('mongojs');
 router.post('/', function(req,res,next) {
   let newBot = new Bot({
     botname : req.body.botname,
-    companyname : req.body.comapanyname,
+    companyname : req.body.companyname,
     botdescription: req.body.botdescription,
     country:req.body.country,
     botcategory:req.body.botcategory

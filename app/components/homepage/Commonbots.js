@@ -5,12 +5,7 @@ import Input from 'muicss/lib/react/input';
 export default class Commonbots extends Component {
   render() {
     var commonbots = {
-      width: '800px',
-      height: 'auto',
-      marginLeft: '350px',
-      marginTop: '10px',
-      backgroundColor: 'lightgoldenrodyellow',
-      textAlign: 'center'
+      height: 'auto'
     };
     var bot = {
       textAlign: 'left',
@@ -28,7 +23,7 @@ export default class Commonbots extends Component {
       marginTop: '-70px'
     };
     return (
-      <div className="head text-center">
+      <div style={commonbots} className="head text-center">
         <h1>Commonly Searched Bots</h1>
         <div className="col-md-4 product simpleCart_shelfItem text-center">
           <a href="single.html"><img style={icon} src="img/bs.jpeg" alt="" /></a>
