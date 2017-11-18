@@ -30,7 +30,7 @@ var AddBotActions = function () {
       $.ajax({
         type: 'POST',
         url: '/api/v1/upload',
-        data: { botname: botname, companyname: botname }
+        data: { botname: botname, companyname: companyname }
       }).done(function (data) {
         _this.actions.addBotSuccess(data.message);
       }).fail(function (jqXhr) {
@@ -1084,8 +1084,8 @@ var UploadBot = function (_React$Component) {
     value: function handleSubmit(event) {
       event.preventDefault();
 
-      var botname = this.state.botname;
-      var companyname = this.state.companyname;
+      var botname = this.state.botname.trim();
+      var companyname = this.state.companyname.trim();
 
       if (!botname) {
         _AddBotActions2.default.invalidName();
@@ -1163,6 +1163,11 @@ var UploadBot = function (_React$Component) {
                     'button',
                     { type: 'submit', className: 'btn btn-primary' },
                     'Submit'
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'help-block' },
+                    this.state.btnHelpBlock
                   )
                 )
               )
@@ -2734,7 +2739,7 @@ var AddBotStore = function () {
     key: 'onAddBotSuccess',
     value: function onAddBotSuccess(successMessage) {
       this.nameValidationState = 'has-success';
-      this.helpBlock = successMessage;
+      this.btnHelpBlock = "Bot sucessfully saved";
     }
   }, {
     key: 'onAddBotFail',
@@ -2747,14 +2752,14 @@ var AddBotStore = function () {
     value: function onUpdateBotName(event) {
       this.botname = event.target.value;
       this.nameValidationState = '';
-      this.helpBlock = '';
+      this.botHelpBlock = '';
     }
   }, {
     key: 'onUpdateCompanyName',
     value: function onUpdateCompanyName(event) {
       this.companyname = event.target.value;
       this.companyNameValidationState = '';
-      this.helpBlock = '';
+      this.companyHelpBlock = '';
     }
   }, {
     key: 'onInvalidName',

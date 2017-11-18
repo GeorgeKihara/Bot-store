@@ -23,8 +23,8 @@ class UploadBot extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    var botname = this.state.botname;
-    var companyname = this.state.companyname;
+    var botname = this.state.botname.trim();
+    var companyname = this.state.companyname.trim();
 
     if (!botname) {
       AddBotActions.invalidName();
@@ -62,6 +62,7 @@ class UploadBot extends React.Component {
                     <span className='help-block'>{this.state.helpBlock}</span>
                   </div>
                   <button type='submit' className='btn btn-primary'>Submit</button>
+                  <span className='help-block'>{this.state.btnHelpBlock}</span>
                 </form>
               </div>
             </div>

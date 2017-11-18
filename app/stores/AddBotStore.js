@@ -14,7 +14,7 @@ class AddBotStore {
 //the bot has been successfully added
   onAddBotSuccess(successMessage) {
     this.nameValidationState = 'has-success';
-    this.helpBlock = successMessage;
+    this.btnHelpBlock = "Bot sucessfully saved";
   }
 
   onAddBotFail(errorMessage) {
@@ -25,13 +25,13 @@ class AddBotStore {
   onUpdateBotName(event) {
     this.botname = event.target.value;
     this.nameValidationState = '';
-    this.helpBlock = '';
+    this.botHelpBlock = '';
   }
 
   onUpdateCompanyName(event) {
     this.companyname = event.target.value;
     this.companyNameValidationState = '';
-    this.helpBlock = '';
+    this.companyHelpBlock = '';
   }
 
   onInvalidName() {

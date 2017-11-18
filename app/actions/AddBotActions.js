@@ -16,7 +16,7 @@ class AddBotActions {
     $.ajax({
       type: 'POST',
       url: '/api/v1/upload',
-      data: { botname: botname, companyname: botname }
+      data: { botname: botname, companyname: companyname }
     })
       .done((data) => {
         this.actions.addBotSuccess(data.message);
