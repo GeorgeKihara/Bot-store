@@ -25,6 +25,7 @@ class UploadBot extends React.Component {
 
     var botname = this.state.botname.trim();
     var companyname = this.state.companyname.trim();
+    var botdescription = this.state.botdescription.trim();
 
     if (!botname) {
       AddBotActions.invalidName();
@@ -36,8 +37,13 @@ class UploadBot extends React.Component {
       this.refs.companyNameTextField.getDOMNode().focus();
     }
 
-    if (botname && companyname) {
-      AddBotActions.addBot(botname, companyname);
+    if (!botdescription) {
+      AddBotActions.invalidBotDescription();
+      this.refs.descriptionTextField.getDOMNode().focus();
+    }
+
+    if (botname && companyname && botdescription) {
+      AddBotActions.addBot(botname, companyname, botdescription);
     }
   }
   render() {
@@ -61,8 +67,14 @@ class UploadBot extends React.Component {
                       onChange={AddBotActions.updateCompanyName} />
                     <span className='help-block'>{this.state.companyHelpBlock}</span>
                   </div>
+                  <div className={'form-group ' + this.state.descriptionValidationState}>
+                    <label className='control-label'>Bot description</label>
+                    <input type='text' className='form-control' ref='descriptionTextField' value={this.state.botdescription}
+                      onChange={AddBotActions.updateBotDescription} />
+                    <span className='help-block'>{this.state.descriptionHelpBlock}</span>
+                  </div>
                   <button type='submit' className='btn btn-primary'>Submit</button>
-                  <span className='help-block'>{this.state.btnHelpBlock}</span>
+                  <span className={'help-block'  + this.state.nameValidationState}>{this.state.btnHelpBlock}</span>
                 </form>
               </div>
             </div>

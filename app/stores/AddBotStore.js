@@ -7,9 +7,14 @@ class AddBotStore {
     this.bindActions(AddBotActions);
     this.botname = '';
     this.companyname = '';
-    this.helpBlock = '';
+    this.botdescription = '';
+    this.btnHelpBlock = '';
+    this.botHelpBlock = '';
+    this.companyHelpBlock = '';
+    this.descriptionHelpBlock = '';
     this.nameValidationState = '';
     this.companyNameValidationState = '';
+    this.descriptionValidationState = '';
   }
 //the bot has been successfully added
   onAddBotSuccess(successMessage) {
@@ -19,7 +24,7 @@ class AddBotStore {
 
   onAddBotFail(errorMessage) {
     this.nameValidationState = 'has-error';
-    this.helpBlock = errorMessage;
+    this.btnHelpBlock = "Cannot save the bot";
   }
 
   onUpdateBotName(event) {
@@ -34,14 +39,25 @@ class AddBotStore {
     this.companyHelpBlock = '';
   }
 
+  onUpdateBotDescription(event) {
+      this.botdescription = event.target.value;
+      this.descriptionValidationState = '';
+      this.descriptionHelpBlock = '';
+  }
+
   onInvalidName() {
     this.nameValidationState = 'has-error';
-    this.botHelpBlock = 'Please enter a Bot name.';
+    this.botHelpBlock = "Please enter the bot's name.";
   }
 
   onInvalidCompanyName() {
     this.companyNameValidationState = 'has-error';
-    this.companyHelpBlock = 'Please enter a company name.';
+    this.companyHelpBlock = "Please enter the company's name.";
+  }
+
+  onInavlidBotDescription() {
+      this.descriptionValidationState = 'has-error';
+      this.descriptionHelpBlock = "Please enter the bot's description";
   }
 }
 

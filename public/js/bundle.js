@@ -2,7 +2,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -16,30 +16,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var AddBotActions = function () {
-  function AddBotActions() {
-    _classCallCheck(this, AddBotActions);
+    function AddBotActions() {
+        _classCallCheck(this, AddBotActions);
 
-    this.generateActions('addBotSuccess', 'addBotFail', 'updateBotName', 'updateCompanyName', 'invalidName', 'invalidCompanyName');
-  }
-
-  _createClass(AddBotActions, [{
-    key: 'addBot',
-    value: function addBot(botname, companyname) {
-      var _this = this;
-
-      $.ajax({
-        type: 'POST',
-        url: '/api/v1/upload',
-        data: { botname: botname, companyname: companyname }
-      }).done(function (data) {
-        _this.actions.addBotSuccess(data.message);
-      }).fail(function (jqXhr) {
-        _this.actions.addBotFail(jqXhr.responseJSON.message);
-      });
+        this.generateActions('addBotSuccess', 'addBotFail', 'updateBotName', 'updateCompanyName', 'updateBotDescription', 'invalidName', 'invalidCompanyName', 'invalidBotDescription');
     }
-  }]);
 
-  return AddBotActions;
+    _createClass(AddBotActions, [{
+        key: 'addBot',
+        value: function addBot(botname, companyname, botdescription) {
+            var _this = this;
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/upload',
+                data: {
+                    botname: botname,
+                    companyname: companyname,
+                    botdescription: botdescription
+                }
+            }).done(function (data) {
+                _this.actions.addBotSuccess(data.message);
+            }).fail(function (jqXhr) {
+                _this.actions.addBotFail(jqXhr.responseJSON.message);
+            });
+        }
+    }]);
+
+    return AddBotActions;
 }();
 
 exports.default = _alt2.default.createActions(AddBotActions);
@@ -1086,6 +1090,7 @@ var UploadBot = function (_React$Component) {
 
       var botname = this.state.botname.trim();
       var companyname = this.state.companyname.trim();
+      var botdescription = this.state.botdescription.trim();
 
       if (!botname) {
         _AddBotActions2.default.invalidName();
@@ -1097,8 +1102,13 @@ var UploadBot = function (_React$Component) {
         this.refs.companyNameTextField.getDOMNode().focus();
       }
 
-      if (botname && companyname) {
-        _AddBotActions2.default.addBot(botname, companyname);
+      if (!botdescription) {
+        _AddBotActions2.default.invalidBotDescription();
+        this.refs.descriptionTextField.getDOMNode().focus();
+      }
+
+      if (botname && companyname && botdescription) {
+        _AddBotActions2.default.addBot(botname, companyname, botdescription);
       }
     }
   }, {
@@ -1160,13 +1170,29 @@ var UploadBot = function (_React$Component) {
                     )
                   ),
                   _react2.default.createElement(
+                    'div',
+                    { className: 'form-group ' + this.state.descriptionValidationState },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'control-label' },
+                      'Bot description'
+                    ),
+                    _react2.default.createElement('input', { type: 'text', className: 'form-control', ref: 'descriptionTextField', value: this.state.botdescription,
+                      onChange: _AddBotActions2.default.updateBotDescription }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'help-block' },
+                      this.state.descriptionHelpBlock
+                    )
+                  ),
+                  _react2.default.createElement(
                     'button',
                     { type: 'submit', className: 'btn btn-primary' },
                     'Submit'
                   ),
                   _react2.default.createElement(
                     'span',
-                    { className: 'help-block' },
+                    { className: 'help-block' + this.state.nameValidationState },
                     this.state.btnHelpBlock
                   )
                 )
@@ -2728,9 +2754,14 @@ var AddBotStore = function () {
     this.bindActions(_AddBotActions2.default);
     this.botname = '';
     this.companyname = '';
-    this.helpBlock = '';
+    this.botdescription = '';
+    this.btnHelpBlock = '';
+    this.botHelpBlock = '';
+    this.companyHelpBlock = '';
+    this.descriptionHelpBlock = '';
     this.nameValidationState = '';
     this.companyNameValidationState = '';
+    this.descriptionValidationState = '';
   }
   //the bot has been successfully added
 
@@ -2745,7 +2776,7 @@ var AddBotStore = function () {
     key: 'onAddBotFail',
     value: function onAddBotFail(errorMessage) {
       this.nameValidationState = 'has-error';
-      this.helpBlock = errorMessage;
+      this.btnHelpBlock = "Cannot save the bot";
     }
   }, {
     key: 'onUpdateBotName',
@@ -2762,16 +2793,29 @@ var AddBotStore = function () {
       this.companyHelpBlock = '';
     }
   }, {
+    key: 'onUpdateBotDescription',
+    value: function onUpdateBotDescription(event) {
+      this.botdescription = event.target.value;
+      this.descriptionValidationState = '';
+      this.descriptionHelpBlock = '';
+    }
+  }, {
     key: 'onInvalidName',
     value: function onInvalidName() {
       this.nameValidationState = 'has-error';
-      this.botHelpBlock = 'Please enter a Bot name.';
+      this.botHelpBlock = "Please enter the bot's name.";
     }
   }, {
     key: 'onInvalidCompanyName',
     value: function onInvalidCompanyName() {
       this.companyNameValidationState = 'has-error';
-      this.companyHelpBlock = 'Please enter a company name.';
+      this.companyHelpBlock = "Please enter the company's name.";
+    }
+  }, {
+    key: 'onInavlidBotDescription',
+    value: function onInavlidBotDescription() {
+      this.descriptionValidationState = 'has-error';
+      this.descriptionHelpBlock = "Please enter the bot's description";
     }
   }]);
 
