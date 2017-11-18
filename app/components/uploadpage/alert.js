@@ -53,13 +53,13 @@ class UploadBot extends React.Component {
                     <label className='control-label'>Bot Name</label>
                     <input type='text' className='form-control' ref='botNameTextField' value={this.state.botname}
                       onChange={AddBotActions.updateBotName} autoFocus />
-                    <span className='help-block'>{this.state.helpBlock}</span>
+                    <span className='help-block'>{this.state.botHelpBlock}</span>
                   </div>
                   <div className={'form-group ' + this.state.companyNameValidationState}>
                     <label className='control-label'>Company Name</label>
                     <input type='text' className='form-control' ref='companyNameTextField' value={this.state.companyname}
                       onChange={AddBotActions.updateCompanyName} />
-                    <span className='help-block'>{this.state.helpBlock}</span>
+                    <span className='help-block'>{this.state.companyHelpBlock}</span>
                   </div>
                   <button type='submit' className='btn btn-primary'>Submit</button>
                   <span className='help-block'>{this.state.btnHelpBlock}</span>

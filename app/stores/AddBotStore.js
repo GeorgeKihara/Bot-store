@@ -36,12 +36,12 @@ class AddBotStore {
 
   onInvalidName() {
     this.nameValidationState = 'has-error';
-    this.helpBlock = 'Please enter a Bot name.';
+    this.botHelpBlock = 'Please enter a Bot name.';
   }
 
   onInvalidCompanyName() {
     this.companyNameValidationState = 'has-error';
-    this.helpBlock = 'Please enter a company name.';
+    this.companyHelpBlock = 'Please enter a company name.';
   }
 }
 

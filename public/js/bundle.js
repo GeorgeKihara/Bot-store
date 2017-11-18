@@ -1140,7 +1140,7 @@ var UploadBot = function (_React$Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'help-block' },
-                      this.state.helpBlock
+                      this.state.botHelpBlock
                     )
                   ),
                   _react2.default.createElement(
@@ -1156,7 +1156,7 @@ var UploadBot = function (_React$Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'help-block' },
-                      this.state.helpBlock
+                      this.state.companyHelpBlock
                     )
                   ),
                   _react2.default.createElement(
@@ -2765,13 +2765,13 @@ var AddBotStore = function () {
     key: 'onInvalidName',
     value: function onInvalidName() {
       this.nameValidationState = 'has-error';
-      this.helpBlock = 'Please enter a Bot name.';
+      this.botHelpBlock = 'Please enter a Bot name.';
     }
   }, {
     key: 'onInvalidCompanyName',
     value: function onInvalidCompanyName() {
       this.companyNameValidationState = 'has-error';
-      this.helpBlock = 'Please enter a company name.';
+      this.companyHelpBlock = 'Please enter a company name.';
     }
   }]);
 
