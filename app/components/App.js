@@ -32,9 +32,7 @@ class App extends React.Component {
         <Search />
         <div>                
         <Commonbots />
-        
-        <Footer/>
-        
+                
         </div>
    
       </div>

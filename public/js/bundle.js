@@ -183,8 +183,7 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           "div",
           null,
-          _react2.default.createElement(_Commonbots2.default, null),
-          _react2.default.createElement(_Footer2.default, null)
+          _react2.default.createElement(_Commonbots2.default, null)
         )
       );
     }
