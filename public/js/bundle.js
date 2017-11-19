@@ -19,12 +19,12 @@ var AddBotActions = function () {
     function AddBotActions() {
         _classCallCheck(this, AddBotActions);
 
-        this.generateActions('addBotSuccess', 'addBotFail', 'updateBotName', 'updateCompanyName', 'updateBotDescription', 'invalidName', 'invalidCompanyName', 'invalidBotDescription');
+        this.generateActions('addBotSuccess', 'addBotFail', 'updateBotName', 'updateCompanyName', 'updateBotDescription', 'updateCategory', 'invalidName', 'invalidCompanyName', 'invalidBotDescription', 'invalidCategory');
     }
 
     _createClass(AddBotActions, [{
         key: 'addBot',
-        value: function addBot(botname, companyname, botdescription) {
+        value: function addBot(botname, companyname, botdescription, category) {
             var _this = this;
 
             $.ajax({
@@ -33,7 +33,8 @@ var AddBotActions = function () {
                 data: {
                     botname: botname,
                     companyname: companyname,
-                    botdescription: botdescription
+                    botdescription: botdescription,
+                    category: category
                 }
             }).done(function (data) {
                 _this.actions.addBotSuccess(data.message);
@@ -1046,6 +1047,10 @@ var _AddBotActions = require('../../actions/AddBotActions');
 
 var _AddBotActions2 = _interopRequireDefault(_AddBotActions);
 
+var _countries = require('./countries');
+
+var _countries2 = _interopRequireDefault(_countries);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1089,7 +1094,8 @@ var UploadBot = function (_React$Component) {
 
       var botname = this.state.botname.trim();
       var companyname = this.state.companyname.trim();
-      var botdescription = this.state.botdescription.trim();
+      var botdescription = this.state.botdescription;
+      var category = this.state.category;
 
       if (!botname) {
         _AddBotActions2.default.invalidName();
@@ -1106,8 +1112,13 @@ var UploadBot = function (_React$Component) {
         this.refs.descriptionTextField.getDOMNode().focus();
       }
 
-      if (botname && companyname && botdescription) {
-        _AddBotActions2.default.addBot(botname, companyname, botdescription);
+      if (category) {
+        _AddBotActions2.default.invalidCategory();
+        this.refs.categoryTextField.getDOMNode().focus();
+      }
+
+      if (botname && companyname && botdescription && category) {
+        _AddBotActions2.default.addBot(botname, companyname, botdescription, category);
       }
     }
   }, {
@@ -1181,7 +1192,27 @@ var UploadBot = function (_React$Component) {
                     _react2.default.createElement(
                       'span',
                       { className: 'help-block' },
-                      this.state.descriptionHelpBlock
+                      this.state.categoryHelpBlock
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'form-group ' + this.state.categoryValidationState },
+                    _react2.default.createElement(
+                      'label',
+                      { className: 'control-label' },
+                      'Category'
+                    ),
+                    _react2.default.createElement(
+                      'select',
+                      { className: 'form-control', ref: 'categoryTextField', value: this.state.category,
+                        onChange: _AddBotActions2.default.updateCategory },
+                      _react2.default.createElement(_countries2.default, null)
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'help-block' },
+                      this.state.categoryHelpBlock
                     )
                   ),
                   _react2.default.createElement(
@@ -1208,7 +1239,7 @@ var UploadBot = function (_React$Component) {
 
 exports.default = UploadBot;
 
-},{"../../actions/AddBotActions":1,"../../stores/AddBotStore":15,"react":"react"}],11:[function(require,module,exports){
+},{"../../actions/AddBotActions":1,"../../stores/AddBotStore":15,"./countries":11,"react":"react"}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2754,13 +2785,16 @@ var AddBotStore = function () {
     this.botname = '';
     this.companyname = '';
     this.botdescription = '';
+    this.category = '';
     this.btnHelpBlock = '';
     this.botHelpBlock = '';
     this.companyHelpBlock = '';
     this.descriptionHelpBlock = '';
+    this.categoryHelpBlock = '';
     this.nameValidationState = '';
     this.companyNameValidationState = '';
     this.descriptionValidationState = '';
+    this.categoryValidationState = '';
   }
   //the bot has been successfully added
 
@@ -2799,6 +2833,13 @@ var AddBotStore = function () {
       this.descriptionHelpBlock = '';
     }
   }, {
+    key: 'onUpdateCategory',
+    value: function onUpdateCategory(event) {
+      this.category = event.target.value;
+      this.categoryValidationState = '';
+      this.categoryHelpBlock = '';
+    }
+  }, {
     key: 'onInvalidName',
     value: function onInvalidName() {
       this.nameValidationState = 'has-error';
@@ -2815,6 +2856,12 @@ var AddBotStore = function () {
     value: function onInavlidBotDescription() {
       this.descriptionValidationState = 'has-error';
       this.descriptionHelpBlock = "Please enter the bot's description";
+    }
+  }, {
+    key: 'onInvalidCategory',
+    value: function onInvalidCategory() {
+      this.categoryValidationState = 'has-error';
+      this.categoryHelpBlock = "Please choose the bot's category";
     }
   }]);
 

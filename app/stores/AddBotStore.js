@@ -8,13 +8,16 @@ class AddBotStore {
     this.botname = '';
     this.companyname = '';
     this.botdescription = '';
+    this.category = '';
     this.btnHelpBlock = '';
     this.botHelpBlock = '';
     this.companyHelpBlock = '';
     this.descriptionHelpBlock = '';
+    this.categoryHelpBlock = '';
     this.nameValidationState = '';
     this.companyNameValidationState = '';
     this.descriptionValidationState = '';
+    this.categoryValidationState = '';
   }
 //the bot has been successfully added
   onAddBotSuccess(successMessage) {
@@ -45,6 +48,12 @@ class AddBotStore {
       this.descriptionHelpBlock = '';
   }
 
+  onUpdateCategory(event) {
+    this.category = event.target.value;
+    this.categoryValidationState = '';
+    this.categoryHelpBlock = '';
+  }
+
   onInvalidName() {
     this.nameValidationState = 'has-error';
     this.botHelpBlock = "Please enter the bot's name.";
@@ -59,6 +68,12 @@ class AddBotStore {
       this.descriptionValidationState = 'has-error';
       this.descriptionHelpBlock = "Please enter the bot's description";
   }
+
+  onInvalidCategory() {
+    this.categoryValidationState = 'has-error';
+    this.categoryHelpBlock = "Please choose the bot's category"
+  }
+
 }
 
 export default alt.createStore(AddBotStore);

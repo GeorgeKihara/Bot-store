@@ -8,20 +8,23 @@ class AddBotActions {
             'updateBotName',
             'updateCompanyName',
             'updateBotDescription',
+            'updateCategory',
             'invalidName',
             'invalidCompanyName',
-            'invalidBotDescription'
+            'invalidBotDescription',
+            'invalidCategory'
         );
     }
 
-    addBot(botname, companyname, botdescription) {
+    addBot(botname, companyname, botdescription, category) {
         $.ajax({
             type: 'POST',
             url: '/api/v1/upload',
             data: {
                 botname: botname,
                 companyname: companyname,
-                botdescription: botdescription
+                botdescription: botdescription,
+                category: category
             }
         })
             .done((data) => {
