@@ -14,7 +14,7 @@ class UploadBot extends React.Component {
     AddBotStore.listen(this.onChange);
   }
   componentWillUnmount() {
-    AddBotStore.unlisten(this.onChange)
+    AddBotStore.unlisten(this.onChange);
   }
 
   onChange(state) {
@@ -82,10 +82,10 @@ class UploadBot extends React.Component {
                   </div>
                   <div className={'form-group ' + this.state.categoryValidationState}>
                     <label className='control-label'>Category</label>
-                    <select className='form-control' ref='categoryTextField' value={this.state.category}
+                    <div className='form-control' ref='categoryTextField' value={this.state.category}
                       onChange={AddBotActions.updateCategory} >
                       <Countries />
-                    </select>
+                    </div>
                     <span className='help-block'>{this.state.categoryHelpBlock}</span>
                   </div>
                   <button type='submit' className='btn btn-primary'>Submit</button>

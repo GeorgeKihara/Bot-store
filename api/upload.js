@@ -24,7 +24,7 @@ Bot.newBot(newBot,(err,bot)=>{
         res.send(newBot);
     }
 })
-  console.log('This is a post request')
+  console.log('This is a post request');
 });
 
 router.get('/', function(req, res, next){
@@ -35,6 +35,7 @@ router.get('/', function(req, res, next){
       res.json(bot);
       
   });
+  console.log('Trying to find all bots');
 });
 
 router.get('/:id', function(req, res, next){
@@ -45,6 +46,7 @@ router.get('/:id', function(req, res, next){
       }
       res.json(bot);
   });
+  console.log('Trying to find a specific bot');
 });
 
 router.delete('/:id', function(req,res,next){

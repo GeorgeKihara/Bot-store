@@ -6,29 +6,12 @@ from "muicss/react";
 
 
 export default class Countries extends Component {
-  constructor() {
-		super()
-		this.state = {
-		
-			country: ''
-			
-
-		}
-	}
-
-  onChange(e){
-		
-		this.setState({
-			[e.target.name]: e.target.value
-		})
-		
-		
-	}
+  
   render() {
 
     return (
    
-      <div>
+      <select>
         <Option value="Afghanistan" label="Afghanistan">Afghanistan</Option>
         <Option value="Åland Islands" label="Åland Islands">Åland Islands</Option>
         <Option value="Albania" label="Albania">Albania</Option>
@@ -279,7 +262,7 @@ export default class Countries extends Component {
         <Option value="Zambia" label="Zambia">Zambia</Option>
         <Option value="Zimbabwe" label="Zimbabwe">Zimbabwe</Option>
 
-      </div>  
+      </select>  
 
     
 

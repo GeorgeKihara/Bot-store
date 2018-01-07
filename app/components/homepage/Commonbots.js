@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Input from 'muicss/lib/react/input';
+import SearchBox from './searchbox';
 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class Commonbots extends Component {
   render() {
-    var commonbots = {
-      height: 'auto'
-    };
     var bot = {
       textAlign: 'left',
       color: '#000',
@@ -23,7 +21,8 @@ export default class Commonbots extends Component {
       marginTop: '-70px'
     };
     return (
-      <div style={commonbots} className="head text-center">
+      <div className="head text-center">
+        <SearchBox />
         <h1>Commonly Searched Bots</h1>
         <div className="col-md-4 product simpleCart_shelfItem text-center">
           <a href="single.html"><img style={icon} src="img/bs.jpeg" alt="" /></a>
@@ -116,7 +115,7 @@ export default class Commonbots extends Component {
             <span className="fa fa-star"></span>
             <span className="fa fa-star"></span></span></a></p>
         </div>
-        
+
       </div>
     );
   }

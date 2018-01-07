@@ -13,64 +13,6 @@ import Alert from './alert';
 
 
 export default class Uploadform extends Component {
-	constructor() {
-		super()
-		this.state = {
-			botname: '',
-			companyname: '',
-			botdescription: '',
-			country: '',
-			category: ''
-
-		}
-	}
-
-
-
-	onChange(e) {
-
-		this.setState({
-			[e.target.name]: e.target.value
-		})
-
-
-	}
-
-
-
-	onSubmit(e) {
-		var url = "http://localhost:3000/api/v1/upload"
-
-		e.preventDefault();
-		this.props.onSubmit
-		console.log(this.state);
-		//clear after submitting
-		this.setState({
-			botname: '',
-			companyname: '',
-			botdescription: '',
-			country: '',
-			category: ''
-		});
-		fetch(url, {
-			method: 'POST',
-			mode: 'CORS',//allows for data to be reached from athour api calls
-			body: JSON.stringify(this.state),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-
-		}).then(res => {
-			return res;
-			console.log('Data has been sent to the server')
-		}).catch(err => err);
-
-
-
-
-
-	}
-
 
 	render() {
 		
