@@ -8,14 +8,10 @@ export default class Search extends Component {
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
 
-            <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Home</a></li>
-              <li><a href="/upload">Upload</a></li>
+            <ul className="nav navbar-nav navbar-header">
+              <li className="active"><a className="navbar-brand" href="#">Home</a></li>
+              <li><a className="navbar-brand" href="/upload">Upload</a></li>
             </ul>
-
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">BOT STORE</a>
-            </div>
           </div>
         </nav>
       </div>

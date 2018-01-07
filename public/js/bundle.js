@@ -755,13 +755,13 @@ var Search = function (_Component) {
             { className: 'container-fluid' },
             _react2.default.createElement(
               'ul',
-              { className: 'nav navbar-nav' },
+              { className: 'nav navbar-nav navbar-header' },
               _react2.default.createElement(
                 'li',
                 { className: 'active' },
                 _react2.default.createElement(
                   'a',
-                  { href: '#' },
+                  { className: 'navbar-brand', href: '#' },
                   'Home'
                 )
               ),
@@ -770,18 +770,9 @@ var Search = function (_Component) {
                 null,
                 _react2.default.createElement(
                   'a',
-                  { href: '/upload' },
+                  { className: 'navbar-brand', href: '/upload' },
                   'Upload'
                 )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'navbar-header' },
-              _react2.default.createElement(
-                'a',
-                { className: 'navbar-brand', href: '#' },
-                'BOT STORE'
               )
             )
           )
@@ -954,8 +945,9 @@ var SearchBox = function (_Component) {
                 height: '16px'
             };
             var spanresults = {
+                position: 'fixed',
                 zIndex: '99',
-                margin: '0 auto'
+                margin: 'auto'
             };
             var results = {
                 background: 'white',
@@ -969,8 +961,7 @@ var SearchBox = function (_Component) {
                 left: '20px'
             };
             var searchbox = {
-                margin: 'auto',
-                padding: '100px 40px'
+                margin: 'auto'
             };
             return _react2.default.createElement(
                 'div',

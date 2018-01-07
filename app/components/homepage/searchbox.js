@@ -43,8 +43,9 @@ export default class SearchBox extends Component {
             height: '16px'
         }
         var spanresults = {
+            position: 'fixed',
             zIndex: '99',
-            margin: '0 auto'
+            margin: 'auto'
         }
         var results = {
             background: 'white',
@@ -58,8 +59,7 @@ export default class SearchBox extends Component {
             left: '20px',
         }
         var searchbox = {
-            margin: 'auto',
-            padding: '100px 40px'
+            margin: 'auto'
         }
         return (
             <div className='head row flipInX animated'>
