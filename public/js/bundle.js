@@ -945,15 +945,17 @@ var SearchBox = function (_Component) {
                 height: '16px'
             };
             var spanresults = {
-                position: 'fixed',
-                zIndex: '99',
+                border: '2px grey',
+                borderRadius: '10px',
                 margin: 'auto'
             };
             var results = {
+                zIndex: '99',
                 background: 'white',
                 height: 'auto',
-                width: '350px',
-                color: 'black'
+                color: 'black',
+                fontWeight: 'bold',
+                textAlign: 'left'
             };
             var botlabel = {
                 fontSize: '30px',
@@ -961,6 +963,8 @@ var SearchBox = function (_Component) {
                 left: '20px'
             };
             var searchbox = {
+                border: '1px grey',
+                borderRadius: '10px',
                 margin: 'auto'
             };
             return _react2.default.createElement(
@@ -971,7 +975,7 @@ var SearchBox = function (_Component) {
                     { className: 'container' },
                     _react2.default.createElement(
                         'form',
-                        { onSubmit: this.handleSubmit.bind(this), className: 'col-sm-4' },
+                        { onSubmit: this.handleSubmit.bind(this), className: 'col-sm-5' },
                         _react2.default.createElement(
                             'label',
                             { style: botlabel, className: 'control-label' },
@@ -995,11 +999,15 @@ var SearchBox = function (_Component) {
                         ),
                         _react2.default.createElement(
                             'span',
-                            { style: spanresults, className: this.state.searchValidationState + 'help-block' },
+                            { style: spanresults, className: this.state.searchValidationState + 'col-sm-9 help-block' },
                             _react2.default.createElement(
                                 'div',
                                 { style: results },
-                                this.state.searchHelpBlock
+                                _react2.default.createElement(
+                                    'a',
+                                    null,
+                                    this.state.searchHelpBlock
+                                )
                             )
                         )
                     )

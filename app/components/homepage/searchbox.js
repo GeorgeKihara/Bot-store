@@ -43,15 +43,17 @@ export default class SearchBox extends Component {
             height: '16px'
         }
         var spanresults = {
-            position: 'fixed',
-            zIndex: '99',
+            border: '2px grey',
+            borderRadius: '10px',           
             margin: 'auto'
         }
         var results = {
+            zIndex: '99',
             background: 'white',
             height: 'auto',
-            width: '350px',
-            color: 'black'
+            color: 'black',
+            fontWeight: 'bold',
+            textAlign: 'left'
         }
         var botlabel = {
             fontSize: '30px',
@@ -59,12 +61,14 @@ export default class SearchBox extends Component {
             left: '20px',
         }
         var searchbox = {
+            border: '1px grey',
+            borderRadius: '10px',
             margin: 'auto'
         }
         return (
             <div className='head row flipInX animated'>
-                    <div className="container">
-                    <form onSubmit={this.handleSubmit.bind(this)} className="col-sm-4">
+                <div className="container">
+                    <form onSubmit={this.handleSubmit.bind(this)} className="col-sm-5">
                         <label style={botlabel} className='control-label'>BOTSTORE</label>
                         <div style={searchbox} className='input-group'>
                             <input type="text" className="form-control" placeholder="Search"
@@ -76,7 +80,11 @@ export default class SearchBox extends Component {
                                 </button>
                             </div>
                         </div>
-                        <span style={spanresults} className={this.state.searchValidationState + 'help-block'}><div style={results}>{this.state.searchHelpBlock}</div></span>
+                        <span style={spanresults} className={this.state.searchValidationState + 'col-sm-9 help-block'}>
+                            <div style={results}>
+                                <a>{this.state.searchHelpBlock}</a>
+                            </div>
+                        </span>
                     </form>
                 </div>
             </div>
